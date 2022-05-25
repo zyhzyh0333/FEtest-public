@@ -1,12 +1,15 @@
 import React, {Component} from "react";
 import Select from 'react-select';
 import { components } from "react-select";
+import "antd/dist/antd.css";
+import { Rate } from 'antd';
 import {useState} from "react";
 import Navbar from "./components/navbar";
 import './App.css';
 import Counters from "./components/counters";
 import Genres from "./components/genres";
 import Data from "./mock-data.json"
+
 
 
 // ☆⌒★
@@ -18,6 +21,7 @@ class App extends React.Component{
     curData: Data,
     inputStr: "",
     selectedGenreOption: [],
+    currentValue: 3.5,
   }
 
   /**
@@ -95,6 +99,9 @@ class App extends React.Component{
     this.setQueryFromGenre(selected)
   };
 
+  setCurrentValue = (v) => {
+    this.setState({currentValue: v})
+  }
 
   render() {
 
@@ -119,18 +126,15 @@ class App extends React.Component{
               onChange={this.handleGenreChange} />
           }
 
-          {/*<Select*/}
-          {/*  options={genreOptions}*/}
-          {/*  isMulti*/}
-          {/*  placeholder={"Genre"}*/}
-          {/*  closeMenuOnSelect={false}*/}
-          {/*  controlShouldRenderValue={false}*/}
-          {/*  hideSelectedOptions={false}*/}
-          {/*  components={{Option}}*/}
-          {/*  onChange={this.handleGenreChange}*/}
-          {/*  allowSelectAll={true}*/}
-          {/*  value={this.state.selectedGenreOption}*/}
-          {/*/>*/}
+          <h4>ReactJS Ant-Design Rate Component</h4>
+          <Rate
+          //   onChange={(value) => {
+          //   this.setCurrentValue(value)
+          // }}
+            allowHalf={true}
+            style={{ color: '#00c' }}
+            value={this.state.currentValue} /> <br />
+          Current Rating: {this.state.currentValue}
         </div>
 
 
